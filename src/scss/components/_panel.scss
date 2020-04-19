@@ -1,0 +1,29 @@
+.panel {
+    position: relative;
+    border: 1px solid #ededed;
+    border-radius: var(--border-radius);
+    padding: 1.5rem 1rem;
+    background-color: var(--color-white);
+
+    .badge {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        color: var(--color-info);
+
+        &::before {
+            content: '•';
+            position: relative;
+            right: .25rem;
+        }
+    }
+
+    &__counter {
+        font-size: 3rem;
+        font-weight: var(--font-weight-regular);
+    }
+
+    &__description {
+        font-weight: var(--font-weight-regular);
+    }
+}

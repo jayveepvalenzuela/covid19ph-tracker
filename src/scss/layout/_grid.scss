@@ -1,0 +1,42 @@
+@use 'abstracts/mixins' as *;
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    @include for-size(tablet-up) {
+        max-width: 720px;
+    }
+
+    @include for-size(desktop-up) {
+        max-width: 960px;
+    }
+
+    @include for-size(large-desktop-up) {
+        max-width: 1140px;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+    margin-left: -1rem;
+}
+
+.col {
+    flex-grow: 1;
+    position: relative;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    @include for-size(tablet-up) {
+        &.md-4 {
+            width: percentage(4/12);
+        }
+    }
+}

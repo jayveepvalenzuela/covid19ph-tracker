@@ -1,0 +1,12 @@
+.section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    &__title {
+        small {
+            display: block;
+            margin-top: .25rem;
+            font-size: .9rem;
+        }
+    }
+}

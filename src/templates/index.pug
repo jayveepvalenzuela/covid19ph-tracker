@@ -1,0 +1,21 @@
+extends layout/app.pug
+
+block content
+    section(class='section container')
+        div(class='row')
+            div(class='col')
+                h2(class='section__title') Stats #[small(class='text-secondary') Last update: #[span(class='last-update') -]]
+        div(class='row mb-1')
+            div(class='col md-4 mb-1')
+                div(class='panel text-center')
+                    div(class='panel__counter mb-1 confirmed') -
+                    div(class='panel__description text-secondary') Confirmed Cases
+                    div(class='badge') Active: #[span(class='active') -]
+            div(class='col md-4 mb-1')
+                div(class='panel text-center text-danger')
+                    div(class='panel__counter mb-1 deaths') -
+                    div(class='panel__description') Deaths
+            div(class='col md-4 mb-1')
+                div(class='panel text-center text-success')
+                    div(class='panel__counter mb-1 recovered') -
+                    div(class='panel__description') Recovered
