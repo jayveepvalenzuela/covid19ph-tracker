@@ -5,10 +5,12 @@ const sourcemaps = require('gulp-sourcemaps');
 const Fiber = require('fibers');
 const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
+const uglify = require('gulp-uglify-es').default;
 const del = require('del');
 const path = {
     src: 'src',
-    build: 'dist'
+    build: 'dist',
+    temp: 'temp'
 };
 
 sass.compiler = require('sass');
@@ -40,14 +42,20 @@ function watchFiles() {
 
     watch(`${path.src}/**/*.pug`, compilePug);
     watch(`${path.src}/**/*.scss`, compileSass);
-    watch(`${path.src}/**/*.js`, concatJs);
+    watch(`${path.src}/**/*.js`, series(concatJs, compressJs));
     watch(`${path.build}/**/*.html`).on('change', browserSync.reload);
 }
 
 function concatJs() {
     return src(`${path.src}/js/*.js`)
-        .pipe(sourcemaps.init())
         .pipe(concat('app.js'))
+        .pipe(dest(`${path.temp}/js`));
+}
+
+function compressJs() {
+    return src(`${path.temp}/js/*.js`)
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
         .pipe(sourcemaps.write())
         .pipe(dest(`${path.build}/js`))
         .pipe(browserSync.stream());
@@ -57,11 +65,16 @@ function cleanBuild() {
     return del(path.build);
 }
 
+function cleanTemp() {
+    return del(path.temp);
+}
+
 exports.default = series(
     cleanBuild,
     compilePug,
     compileSass,
     concatJs,
+    compressJs,
     watchFiles
 );
 
@@ -69,5 +82,7 @@ exports.build = series(
     cleanBuild,
     compilePug,
     compileSass,
-    concatJs
+    concatJs,
+    compressJs,
+    cleanTemp
 );
