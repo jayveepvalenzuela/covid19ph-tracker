@@ -64,3 +64,10 @@ exports.default = series(
     concatJs,
     watchFiles
 );
+
+exports.build = series(
+    cleanBuild,
+    compilePug,
+    compileSass,
+    concatJs
+);
