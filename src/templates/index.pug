@@ -4,7 +4,7 @@ block content
     section(class='section container')
         div(class='row')
             div(class='col')
-                h2(class='section__title') Stats #[small(class='text-secondary') Last update: #[span(class='last-update') -]]
+                h2(class='section__title') Total Stats #[small(class='text-secondary') Last update: #[span(class='last-update') -]]
         div(class='row mb-1')
             div(class='col md-4 mb-1')
                 div(class='panel text-center')
@@ -19,3 +19,12 @@ block content
                 div(class='panel text-center text-success')
                     div(class='panel__counter mb-1 recovered') -
                     div(class='panel__description') Recovered
+
+    section(class='section container')
+        div(class='row')
+            div(class='col')
+                h2(class='section__title') Deaths vs Recoveries by Date
+        div(class='row')
+            div(class='col')
+                div(class='panel')
+                    canvas(id='deathRecoveredChart' class='chart' width='400' height='200')
