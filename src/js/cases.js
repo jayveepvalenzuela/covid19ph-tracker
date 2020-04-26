@@ -11,7 +11,7 @@ function getCases() {
     }).then(function(response) {
         response.json().then(function(data) {
             cases.insertAdjacentHTML('beforeend', makeListTemplate(data.data.data));
-            casesTotal.innerText = `${cases.childElementCount} of ${data.total}`;
+            casesTotal.innerText = `${cases.childElementCount} of ${data.data.total}`;
 
             btnLoadMore.innerText = 'Load more';
 
@@ -29,7 +29,7 @@ function makeListTemplate(data) {
                     <td>${setStatus(e.date_died, e.recovered_on)}</td>
                     <td>${e.age}</td>
                     <td>${e.sex}</td>
-                    <td>${e.location}</td>
+                    <td>${e.prov_city_res}, ${e.region_res}</td>
                     <td>${e.date_reported}</td>
                  </tr>`;
     });
