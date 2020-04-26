@@ -10,7 +10,7 @@ function getCases() {
         redirect: 'follow'
     }).then(function(response) {
         response.json().then(function(data) {
-            cases.insertAdjacentHTML('beforeend', makeListTemplate(data.data));
+            cases.insertAdjacentHTML('beforeend', makeListTemplate(data.data.data));
             casesTotal.innerText = `${cases.childElementCount} of ${data.total}`;
 
             btnLoadMore.innerText = 'Load more';
