@@ -5,16 +5,19 @@
     padding: 1.5rem 1rem;
     background-color: var(--color-white);
 
-    .badge {
-        position: absolute;
-        top: .5rem;
-        right: .5rem;
-        color: var(--color-info);
+    &.confirmed-panel {
+        .badge {
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+            background-color: transparent;
+            color: var(--color-info);
 
-        &::before {
-            content: '•';
-            position: relative;
-            right: .25rem;
+            &::before {
+                content: '•';
+                position: relative;
+                right: .25rem;
+            }
         }
     }
 

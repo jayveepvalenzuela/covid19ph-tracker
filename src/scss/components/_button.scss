@@ -1,0 +1,22 @@
+.btn {
+    border-radius: var(--border-radius);
+    padding: .5rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity .15s ease-in-out;
+
+    &:hover {
+        opacity: .9;
+    }
+
+    &--dark {
+        background-color: var(--color-dark);
+        border-color: var(--color-dark);
+        color: var(--color-white);
+    }
+
+    &--block {
+        display: block;
+        width: 100%;
+    }
+}

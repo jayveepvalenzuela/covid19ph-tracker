@@ -1,0 +1,22 @@
+extends layout/app.pug
+
+block content
+    section(class='section container')
+        div(class='row')
+            div(class='col')
+                h2(class='section__title') Recorded Cases
+        div(class='row')
+            div(class='col')
+                div(class='table__container panel mb-1')
+                    table(class='table')
+                        thead
+                            tr
+                                th Case Code
+                                th Status
+                                th Age
+                                th Sex
+                                th Location
+                                th Date Reported
+                        tbody(class='cases')
+                div(class='text-secondary text-center mb-2') - #[span(class='cases-total')] -
+                button(class='btn btn--dark btn--block load-more' type='button') Load more
