@@ -2,6 +2,7 @@ const lastUpdate = document.querySelector('.last-update');
 const confirmed = document.querySelector('.confirmed');
 const active = document.querySelector('.active');
 const deaths = document.querySelector('.deaths');
+const deathsToday = document.querySelector('.deaths-today');
 const recovered = document.querySelector('.recovered');
 
 fetch('https://corona.lmao.ninja/v2/countries/philippines', {
@@ -18,5 +19,6 @@ fetch('https://corona.lmao.ninja/v2/countries/philippines', {
         active.innerText = data.active.toLocaleString();
         deaths.innerText = data.deaths.toLocaleString();
         recovered.innerText = data.recovered.toLocaleString();
+        deathsToday.innerText = data.todayDeaths.toLocaleString();
     });
 }).catch(error => console.log('error', error));
