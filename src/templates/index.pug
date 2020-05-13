@@ -4,7 +4,7 @@ block content
     section(class='section container')
         div(class='row')
             div(class='col')
-                h2(class='section__title') Total Stats #[small(class='text-secondary') Last update: #[span(class='last-update') -]]
+                h2(class='section__title') Total Stats #[small(class='text-secondary') Updated as of #[em(class='last-update') -]]
         div(class='row')
             div(class='col md-4 mb-1')
                 div(class='panel custom-panel text-center')
@@ -12,14 +12,15 @@ block content
                     div(class='panel__description text-secondary') Confirmed Cases
                     div(class='badge') Active: #[span(class='active') -]
             div(class='col md-4 mb-1')
-                div(class='panel custom-panel text-center text-danger')
-                    div(class='panel__counter mb-1 deaths') -
-                    div(class='panel__description') Deaths
+                div(class='panel custom-panel text-center')
+                    div(class='panel__counter mb-1 text-danger deaths') -
+                    div(class='panel__description text-secondary') Deaths
                     div(class='badge') New: #[span(class='deaths-today') -]
             div(class='col md-4 mb-1')
-                div(class='panel text-center text-success')
-                    div(class='panel__counter mb-1 recovered') -
-                    div(class='panel__description') Recovered
+                div(class='panel custom-panel text-center')
+                    div(class='panel__counter mb-1 text-success recovered') -
+                    div(class='panel__description text-secondary') Recovered
+                    div(class='badge') New: #[span(class='recovered-today') -]
 
     section(class='section container')
         div(class='row')
