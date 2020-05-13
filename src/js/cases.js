@@ -11,7 +11,7 @@ function getCases() {
     }).then(function(response) {
         response.json().then(function(obj) {
             cases.insertAdjacentHTML('beforeend', makeListTemplate(obj.data.data));
-            casesTotal.innerText = `${cases.childElementCount} of ${obj.data.total}`;
+            casesTotal.innerText = `${cases.childElementCount.toLocaleString()} of ${obj.data.total.toLocaleString()}`;
 
             btnLoadMore.innerText = 'Load more';
 

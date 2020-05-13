@@ -11,12 +11,12 @@ block content
                     table(class='table')
                         thead
                             tr
-                                th Case Code
-                                th Status
-                                th Age
-                                th Sex
-                                th Location
-                                th Date Reported
+                                th(scope='col') Case Code
+                                th(scope='col') Status
+                                th(scope='col') Age
+                                th(scope='col') Sex
+                                th(scope='col') Location
+                                th(scope='col') Date Reported
                         tbody(class='cases')
                 div(class='text-secondary text-center mb-2') - #[span(class='cases-total')] -
                 button(class='btn btn--dark btn--block load-more' type='button') Load more

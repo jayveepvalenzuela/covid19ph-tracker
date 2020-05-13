@@ -5,6 +5,7 @@ const deaths = document.querySelector('.deaths');
 const deathsToday = document.querySelector('.deaths-today');
 const recovered = document.querySelector('.recovered');
 const recoveredToday = document.querySelector('.recovered-today');
+const statsAbroad = document.querySelector('.stats-abroad');
 
 fetch('https://coronavirus-ph-api.herokuapp.com/total', {
     method: 'GET',
@@ -24,3 +25,27 @@ fetch('https://coronavirus-ph-api.herokuapp.com/total', {
         recoveredToday.innerText = obj.data.recoveries_today.toLocaleString();
     });
 }).catch(error => console.log('error', error));
+
+fetch('https://coronavirus-ph-api.herokuapp.com/cases-outside-ph', {
+    method: 'GET',
+    redirect: 'follow'
+}).then(function(response) {
+    response.json().then(function(obj) {
+        statsAbroad.insertAdjacentHTML('beforeend', makeStatsListTemplate(obj.data));
+    });
+}).catch(error => console.log('error', error));
+
+function makeStatsListTemplate(data) {
+    let html = '';
+
+    data.forEach(e => {
+        html += `<tr>
+                    <th scope="row">${e.country_territory_place}</th>
+                    <td>${e.confirmed}</td>
+                    <td>${e.died}</td>
+                    <td>${e.recovered}</td>
+                 </tr>`;
+    });
+
+    return html;
+}
