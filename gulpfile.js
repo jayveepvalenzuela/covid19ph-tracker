@@ -54,6 +54,11 @@ function compressJs() {
         .pipe(browserSync.stream());
 }
 
+function copyImg() {
+    return src(`${path.src}/img/*.{png,jpg,gif}`)
+        .pipe(dest(`${path.build}/img`));
+}
+
 function cleanBuild() {
     return del(path.build);
 }
@@ -63,6 +68,7 @@ exports.default = series(
     compilePug,
     compileSass,
     compressJs,
+    copyImg,
     watchFiles
 );
 
@@ -70,5 +76,6 @@ exports.build = series(
     cleanBuild,
     compilePug,
     compileSass,
-    compressJs
+    compressJs,
+    copyImg
 );
