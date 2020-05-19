@@ -41,11 +41,29 @@ block content
     section(class='section container')
         div(class='row')
             div(class='col')
-                h2(class='section__title') Deaths vs Recoveries by Date
+                h2(class='section__title') Deaths vs Recoveries
         div(class='row')
             div(class='col')
                 div(class='panel')
                     canvas(id='deathRecoveredChart' class='chart' width='400' height='200')
+
+    section(class='section container')
+        div(class='row')
+            div(class='col')
+                h2(class='section__title') Active Cases
+        div(class='row')
+            div(class='col')
+                div(class='panel')
+                    canvas(id='activeChart' class='chart' width='400' height='200')
+
+    section(class='section container')
+        div(class='row')
+            div(class='col')
+                h2(class='section__title') Total Cases
+        div(class='row')
+            div(class='col')
+                div(class='panel')
+                    canvas(id='totalChart' class='chart' width='400' height='200')
 
 append scripts
     script(src='js/stats.js')
