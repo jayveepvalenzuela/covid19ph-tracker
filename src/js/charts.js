@@ -13,11 +13,9 @@ fetch(`https://api.covid19api.com/country/philippines?from=${fromDate}&to=${pres
         const chartDeaths = data.map(prop => prop.Deaths);
         const chartRecovered = data.map(prop => prop.Recovered);
         const chartActive = data.map(prop => prop.Active);
-        const chartConfirmed = data.map(prop => prop.Confirmed);
 
         const deathRecoveredCtx = document.querySelector('#deathRecoveredChart').getContext('2d');
         const activeCtx = document.querySelector('#activeChart').getContext('2d');
-        const totalCtx = document.querySelector('#totalChart').getContext('2d');
 
         const deathRecoveredChart = new Chart(deathRecoveredCtx, {
             type: 'line',
@@ -68,34 +66,6 @@ fetch(`https://api.covid19api.com/country/philippines?from=${fromDate}&to=${pres
                         pointBackgroundColor: '#2196F3',
                         backgroundColor: 'rgba(33,150,243,.5)',
                         borderColor: '#2196F3',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        ticks: {
-                            callback: function(tick, index, array) {
-                                return (index % 3) ? '' : tick;
-                            }
-                        }
-                    }]
-                }
-            }
-        });
-
-        const totalChart = new Chart(totalCtx, {
-            type: 'line',
-            data: {
-                labels: chartDates,
-                datasets: [
-                    {
-                        label: 'Total Cases',
-                        data: chartConfirmed,
-                        pointBackgroundColor: '#777777',
-                        backgroundColor: 'rgba(119,119,119,.5)',
-                        borderColor: '#777777',
                         borderWidth: 1
                     }
                 ]
