@@ -6,11 +6,11 @@
     font-size: .75rem;
     font-weight: var(--font-weight-bold);
 
-    &--success {
+    &--recovered {
         background-color: var(--color-success);
     }
 
-    &--danger {
+    &--died {
         background-color: var(--color-danger);
     }
 }

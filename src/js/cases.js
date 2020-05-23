@@ -5,7 +5,9 @@ let page = 1;
 let items = 20;
 
 function getCases() {
-    fetch(`https://coronavirus-ph-api.herokuapp.com/doh-data-drop?page=${page}&itemsPerPage=${items}`, {
+    btnLoadMore.innerText = 'Loading..';
+
+    fetch(`https://coronavirus-ph-api.herokuapp.com/cases?page=${page}&itemsPerPage=${items}`, {
         method: 'GET',
         redirect: 'follow'
     }).then(function(response) {
@@ -25,28 +27,21 @@ function makeListTemplate(data) {
 
     data.forEach(e => {
         html += `<tr>
-                    <td>${e.case_code}</td>
-                    <td>${setStatus(e.date_died, e.recovered_on)}</td>
+                    <td>${e.case_no}</td>
+                    <td><span class="badge badge--${e.health_status.toLowerCase()}">${e.health_status}</span></td>
                     <td>${e.age}</td>
                     <td>${e.sex}</td>
-                    <td>${e.prov_city_res}, ${e.region_res}</td>
-                    <td>${e.date_reported}</td>
+                    <td>${e.location}</td>
+                    <td>${e.travel_history}</td>
+                    <td>${e.hospital_admitted_to}</td>
+                    <td>${e.date_of_announcement_to_public}</td>
                  </tr>`;
     });
 
     return html;
 }
 
-function setStatus(isDeceased, isRecovered) {
-    if (isDeceased) return '<span class="badge badge--danger">Deceased</span>';
-
-    if (isRecovered) return '<span class="badge badge--success">Recovered</span>';
-
-    return '<span class="badge">Pending</span>';
-}
-
 btnLoadMore.addEventListener('click', function() {
-    btnLoadMore.innerText = 'Loading..';
     getCases();
 });
 
