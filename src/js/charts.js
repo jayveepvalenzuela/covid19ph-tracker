@@ -47,7 +47,7 @@ fetch(`https://api.covid19api.com/country/philippines?from=${fromDate}&to=${pres
                     xAxes: [{
                         ticks: {
                             callback: function(tick, index, array) {
-                                return (index % 3) ? '' : tick;
+                                return (index % 7) ? '' : tick;
                             }
                         }
                     }]
@@ -75,7 +75,7 @@ fetch(`https://api.covid19api.com/country/philippines?from=${fromDate}&to=${pres
                     xAxes: [{
                         ticks: {
                             callback: function(tick, index, array) {
-                                return (index % 3) ? '' : tick;
+                                return (index % 7) ? '' : tick;
                             }
                         }
                     }]
