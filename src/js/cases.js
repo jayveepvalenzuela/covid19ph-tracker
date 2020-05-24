@@ -6,6 +6,7 @@ let items = 20;
 
 function getCases() {
     btnLoadMore.innerText = 'Loading..';
+    btnLoadMore.setAttribute('disabled', true);
 
     fetch(`https://coronavirus-ph-api.herokuapp.com/cases?page=${page}&itemsPerPage=${items}`, {
         method: 'GET',
@@ -16,6 +17,7 @@ function getCases() {
             casesTotal.innerText = `${cases.childElementCount.toLocaleString()} of ${obj.data.total.toLocaleString()}`;
 
             btnLoadMore.innerText = 'Load more';
+            btnLoadMore.removeAttribute('disabled');
 
             page++;
         });
