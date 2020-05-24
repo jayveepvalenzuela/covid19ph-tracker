@@ -1,6 +1,6 @@
 const lastUpdate = document.querySelector('.last-update');
 const confirmed = document.querySelector('.confirmed');
-const active = document.querySelector('.active');
+const active = document.querySelector('.active-cases');
 const deaths = document.querySelector('.deaths');
 const deathsToday = document.querySelector('.deaths-today');
 const recovered = document.querySelector('.recovered');
