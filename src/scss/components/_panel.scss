@@ -5,19 +5,12 @@
     padding: 1.5rem 1rem;
     background-color: var(--color-white);
 
-    &.custom-panel {
+    &--custom {
+        box-shadow: 0 .5rem 1rem rgba(#000, .25);
+
         .badge {
-            position: absolute;
-            top: .5rem;
-            right: .5rem;
             background-color: transparent;
             color: var(--color-info);
-
-            &::before {
-                content: '•';
-                position: relative;
-                right: .25rem;
-            }
         }
     }
 
@@ -27,6 +20,7 @@
     }
 
     &__description {
+        margin-bottom: .5rem;
         font-weight: var(--font-weight-regular);
     }
 }

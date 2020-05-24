@@ -1,26 +1,27 @@
 extends layout/app.pug
 
 block content
-    section(class='section container')
-        div(class='row')
-            div(class='col')
-                h2(class='section__title') Total Stats #[small(class='text-secondary') Updated as of #[em(class='last-update') -]]
-        div(class='row')
-            div(class='col md-4 mb-1')
-                div(class='panel custom-panel text-center')
-                    div(class='panel__counter mb-1 confirmed') -
-                    div(class='panel__description text-secondary') Confirmed Cases
-                    div(class='badge') Active: #[span(class='active') -]
-            div(class='col md-4 mb-1')
-                div(class='panel custom-panel text-center')
-                    div(class='panel__counter mb-1 text-danger deaths') -
-                    div(class='panel__description text-secondary') Deaths
-                    div(class='badge') New: #[span(class='deaths-today') -]
-            div(class='col md-4 mb-1')
-                div(class='panel custom-panel text-center')
-                    div(class='panel__counter mb-1 text-success recovered') -
-                    div(class='panel__description text-secondary') Recovered
-                    div(class='badge') New: #[span(class='recovered-today') -]
+    section(class='section section--banner')
+        div(class='container mb-1')
+            div(class='row')
+                div(class='col')
+                    h2(class='section__title text-white') Total Stats #[small(class='text-secondary') Updated as of #[em(class='last-update') -]]
+            div(class='row')
+                div(class='col md-4 mb-1')
+                    div(class='panel panel--custom text-center')
+                        div(class='panel__counter mb-1 text-default confirmed') -
+                        div(class='panel__description text-secondary') Confirmed Cases
+                        div(class='badge') Active: #[span(class='active') -]
+                div(class='col md-4 mb-1')
+                    div(class='panel panel--custom text-center')
+                        div(class='panel__counter mb-1 text-danger deaths') -
+                        div(class='panel__description text-secondary') Deaths
+                        div(class='badge') New: #[span(class='deaths-today') -]
+                div(class='col md-4 mb-1')
+                    div(class='panel panel--custom text-center')
+                        div(class='panel__counter mb-1 text-success recovered') -
+                        div(class='panel__description text-secondary') Recovered
+                        div(class='badge') New: #[span(class='recovered-today') -]
 
     section(class='section container')
         div(class='row')

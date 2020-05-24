@@ -30,9 +30,19 @@
 
         &-item {
             display: inline-block;
+            position: relative;
 
             &:not(:last-child) {
                 margin-right: 2rem;
+            }
+
+            &.active::before {
+                content: '•';
+                position: absolute;
+                bottom: -1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                color: var(--color-danger);
             }
         }
     }

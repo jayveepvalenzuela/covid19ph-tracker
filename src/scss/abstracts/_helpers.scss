@@ -13,6 +13,14 @@
         text-align: center;
     }
 
+    &-default {
+        color: var(--color-dark);
+    }
+
+    &-white {
+        color: var(--color-white);
+    }
+
     &-success {
         color: var(--color-success);
     }

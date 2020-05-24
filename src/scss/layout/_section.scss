@@ -13,4 +13,8 @@
             border-bottom: 1px dotted currentColor;
         }
     }
+
+    &--banner {
+        background: #171415 url('../img/banner.webp') no-repeat top left;
+    }
 }

@@ -42,6 +42,7 @@ function watchFiles() {
     watch(`${path.src}/**/*.pug`, compilePug);
     watch(`${path.src}/**/*.scss`, compileSass);
     watch(`${path.src}/**/*.js`, compressJs);
+    watch(`${path.src}/**/*.{png,jpg,gif,webp}`, copyImg);
     watch(`${path.build}/**/*.html`).on('change', browserSync.reload);
 }
 
@@ -55,7 +56,7 @@ function compressJs() {
 }
 
 function copyImg() {
-    return src(`${path.src}/img/*.{png,jpg,gif}`)
+    return src(`${path.src}/img/*.{png,jpg,gif,webp}`)
         .pipe(dest(`${path.build}/img`));
 }
 
