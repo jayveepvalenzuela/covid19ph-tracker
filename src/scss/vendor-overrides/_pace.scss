@@ -1,0 +1,8 @@
+.pace {
+    z-index: 2000;
+
+    .pace-progress {
+        height: 2.5px;
+        background-color: var(--color-danger);
+    }
+}
