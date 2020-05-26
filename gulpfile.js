@@ -8,8 +8,7 @@ const uglify = require('gulp-uglify-es').default;
 const del = require('del');
 const path = {
     src: 'src',
-    build: 'dist',
-    temp: 'temp'
+    build: 'dist'
 };
 
 sass.compiler = require('sass');
