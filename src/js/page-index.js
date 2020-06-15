@@ -1,7 +1,11 @@
-getTotalCases().then(function(data) {
+import { Case } from './case.js';
+
+const caseAPI = new Case();
+
+caseAPI.getTotalCases().then(function(data) {
     const { last_update, cases, admitted, deaths, deaths_today, recoveries, recoveries_today } = data.data;
 
-    document.querySelector('.confirmed').innerText = cases.toLocaleString();
+    document.querySelector('.confirmed-cases').innerText = cases.toLocaleString();
     document.querySelector('.active-cases').innerText = admitted.toLocaleString();
     document.querySelector('.deaths').innerText = deaths.toLocaleString();
     document.querySelector('.deaths-today').innerText = deaths_today.toLocaleString();
@@ -14,39 +18,54 @@ getTotalCases().then(function(data) {
     });
 });
 
-getTotalCasesAbroad().then(function(data) {
-    document.querySelector('.stats-abroad').insertAdjacentHTML('beforeend', generateTableRows(data.data));
-});
-
-getCasesTimeline().then(function(data) {
-    const chartDeaths = data.map(e => e.Deaths);
-    const chartRecovered = data.map(e => e.Recovered);
-    const chartActive = data.map(e => e.Active);
-    const chartDates = data.map(e => new Date(e.Date).toLocaleDateString('en-US', {
+caseAPI.getCasesTimeline().then(function(data) {
+    const confirmedData = data.map(e => e.Confirmed);
+    const activeData = data.map(e => e.Active);
+    const deathData = data.map(e => e.Deaths);
+    const recoveredData = data.map(e => e.Recovered);
+    const dateData = data.map(e => new Date(e.Date).toLocaleDateString('en-US', {
         month: 'short',
         day: 'numeric'
     }));
 
-    const deathRecoveredChart = new Chart(document.querySelector('#deathRecoveredChart').getContext('2d'), {
+    const progressionChart = new Chart(document.querySelector('#progressionChart').getContext('2d'), {
         type: 'line',
         data: {
-            labels: chartDates,
+            labels: dateData,
             datasets: [
                 {
-                    label: 'Deaths',
-                    data: chartDeaths,
-                    pointBackgroundColor: '#F44336',
+                    label: 'Confirmed',
+                    data: confirmedData,
+                    pointBackgroundColor: '#777777',
+                    borderColor: '#777777',
                     backgroundColor: 'transparent',
+                    borderCapStyle: 'round',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Active',
+                    data: activeData,
+                    pointBackgroundColor: '#2196F3',
+                    borderColor: '#2196F3',
+                    backgroundColor: 'transparent',
+                    borderCapStyle: 'round',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Deaths',
+                    data: deathData,
+                    pointBackgroundColor: '#F44336',
                     borderColor: '#F44336',
+                    backgroundColor: 'transparent',
                     borderCapStyle: 'round',
                     borderWidth: 1
                 },
                 {
                     label: 'Recovered',
-                    data: chartRecovered,
+                    data: recoveredData,
                     pointBackgroundColor: '#4CAF50',
-                    backgroundColor: 'transparent',
                     borderColor: '#4CAF50',
+                    backgroundColor: 'transparent',
                     borderCapStyle: 'round',
                     borderWidth: 1
                 }
@@ -68,47 +87,4 @@ getCasesTimeline().then(function(data) {
             }
         }
     });
-
-    const activeChart = new Chart(document.querySelector('#activeChart').getContext('2d'), {
-        type: 'line',
-        data: {
-            labels: chartDates,
-            datasets: [
-                {
-                    label: 'Active Cases',
-                    data: chartActive,
-                    pointBackgroundColor: '#2196F3',
-                    backgroundColor: 'rgba(33,150,243,.5)',
-                    borderColor: '#2196F3',
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        callback: function(tick, index, array) {
-                            return (index % 5) ? '' : tick;
-                        }
-                    }
-                }]
-            }
-        }
-    });
 });
-
-function generateTableRows(data) {
-    let html = '';
-
-    data.forEach(function(e) {
-        html += `<tr>
-                    <th scope="row">${e.country_territory_place}</th>
-                    <td>${e.confirmed}</td>
-                    <td>${e.died}</td>
-                    <td>${e.recovered}</td>
-                </tr>`;
-    });
-
-    return html;
-}

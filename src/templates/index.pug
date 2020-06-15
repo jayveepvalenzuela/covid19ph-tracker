@@ -9,7 +9,7 @@ block content
             div(class='row')
                 div(class='col md-4 mb-1')
                     div(class='panel panel--custom text-center')
-                        div(class='panel__counter mb-1 text-default confirmed') -
+                        div(class='panel__counter mb-1 text-default confirmed-cases') -
                         div(class='panel__description text-secondary') Confirmed Cases
                         div(class='badge') Active: #[span(class='active-cases') -]
                 div(class='col md-4 mb-1')
@@ -26,37 +26,12 @@ block content
     section(class='section container')
         div(class='row')
             div(class='col')
-                h2(class='section__title') Total Cases of Filipinos Abroad #[small(class='text-secondary') #[em Learn more on #[a(class='text-secondary' href='https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_Philippines#Filipino_expatriates' target='_blank' rel='noreferrer noopener') Wikipedia]]]
-        div(class='row')
-            div(class='col')
-                div(class='table__container panel mb-1')
-                    table(class='table')
-                        thead
-                            tr
-                                th(scope='col') Region
-                                th(scope='col') Confirmed Cases
-                                th(scope='col') Deaths
-                                th(scope='col') Recovered
-                        tbody(class='stats-abroad')
-
-    section(class='section container')
-        div(class='row')
-            div(class='col')
-                h2(class='section__title') Deaths vs Recoveries
+                h2(class='section__title') Case Progression
         div(class='row')
             div(class='col')
                 div(class='panel')
-                    canvas(id='deathRecoveredChart' class='chart' width='400' height='200')
-
-    section(class='section container')
-        div(class='row')
-            div(class='col')
-                h2(class='section__title') Active Cases
-        div(class='row')
-            div(class='col')
-                div(class='panel')
-                    canvas(id='activeChart' class='chart' width='400' height='200')
+                    canvas(id='progressionChart' class='chart' width='400' height='200')
 
 append scripts
-    script(src='js/cases.js')
-    script(src='js/page-index.js')
+    script(type="module" src='js/case.js')
+    script(type="module" src='js/page-index.js')

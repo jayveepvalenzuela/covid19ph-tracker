@@ -1,4 +1,4 @@
-const currentPathname = window.location.pathname.replace(/\.[^/.]+$/, '');
-const navLink = document.querySelector(`[data-pathname="${currentPathname}"]`);
+const currentPathName = window.location.pathname;
+const navLink = document.querySelector(`[data-pathname="${currentPathName}"]`);
 
 navLink.classList.add('active');

@@ -1,21 +1,20 @@
-const cases = document.querySelector('.cases');
+import { Case } from './case.js';
+
+const caseAPI = new Case();
+const casesTableBody = document.querySelector('.cases');
 const casesTotal = document.querySelector('.cases-total');
 const btnLoadMore = document.querySelector('.btn-load-more');
 let page = 1;
 
-btnLoadMore.addEventListener('click', function() {
-    getCases();
-});
-
-getCases();
-
-function getCases() {
+const getList = function() {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
 
-    getCaseList(page).then(function(data) {
-        cases.insertAdjacentHTML('beforeend', generateTableRows(data.data.data));
-        casesTotal.innerText = `${cases.childElementCount.toLocaleString()} of ${data.data.total.toLocaleString()}`;
+    caseAPI.getCaseList(page).then(function(data) {
+        const { data: list, total } = data.data;
+
+        casesTableBody.insertAdjacentHTML('beforeend', generateTableRow(list));
+        casesTotal.innerText = `${casesTableBody.childElementCount.toLocaleString()} of ${total.toLocaleString()}`;
 
         btnLoadMore.innerText = 'Load more';
         btnLoadMore.removeAttribute('disabled');
@@ -24,7 +23,7 @@ function getCases() {
     });
 }
 
-function generateTableRows(data) {
+const generateTableRow = function(data) {
     let html = '';
 
     data.forEach(e => {
@@ -42,3 +41,9 @@ function generateTableRows(data) {
 
     return html;
 }
+
+btnLoadMore.addEventListener('click', function() {
+    getList();
+});
+
+getList();
