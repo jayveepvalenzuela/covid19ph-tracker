@@ -6,8 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayveepvalenzuela/covid19-philippines.git"
+  },
   "author": "Jayvee Valenzuela",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayveepvalenzuela/covid19-philippines/issues"
+  },
+  "homepage": "https://github.com/jayveepvalenzuela/covid19-philippines#readme",
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
