@@ -24,6 +24,7 @@ caseAPI.getCasesTimeline().then(function(data) {
     const deathData = data.map(e => e.Deaths);
     const recoveredData = data.map(e => e.Recovered);
     const dateData = data.map(e => new Date(e.Date).toLocaleDateString('en-US', {
+        year: 'numeric',
         month: 'short',
         day: 'numeric'
     }));
