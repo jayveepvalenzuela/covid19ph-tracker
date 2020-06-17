@@ -3,7 +3,7 @@ import { Case } from './case.js';
 const caseAPI = new Case();
 
 caseAPI.getTotalCases().then(function(data) {
-    const { last_update, cases, admitted, deaths, deaths_today, recoveries, recoveries_today } = data.data;
+    const { last_update, cases, admitted, deaths, deaths_today, recoveries, recoveries_today, fatality_rate, recovery_rate } = data.data;
 
     document.querySelector('.confirmed-cases').innerText = cases.toLocaleString();
     document.querySelector('.active-cases').innerText = admitted.toLocaleString();
@@ -11,6 +11,8 @@ caseAPI.getTotalCases().then(function(data) {
     document.querySelector('.deaths-today').innerText = deaths_today.toLocaleString();
     document.querySelector('.recovered').innerText = recoveries.toLocaleString();
     document.querySelector('.recovered-today').innerText = recoveries_today.toLocaleString();
+    document.querySelector('.fatality-rate').innerText = fatality_rate;
+    document.querySelector('.recovery-rate').innerText = recovery_rate;
     document.querySelector('.last-update').innerText = new Date(last_update).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
