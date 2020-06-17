@@ -4,13 +4,15 @@ const caseAPI = new Case();
 const casesTableBody = document.querySelector('.cases');
 const casesTotal = document.querySelector('.cases-total');
 const btnLoadMore = document.querySelector('.btn-load-more');
+const selectShowRows = document.querySelector('.select-show-rows');
 let page = 1;
+let items = 50;
 
 const getList = function() {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
 
-    caseAPI.getCaseList(page).then(function(data) {
+    caseAPI.getCaseList(page, items).then(function(data) {
         const { data: list, total } = data.data;
 
         casesTableBody.insertAdjacentHTML('beforeend', generateTableRow(list));
@@ -43,6 +45,14 @@ const generateTableRow = function(data) {
 }
 
 btnLoadMore.addEventListener('click', function() {
+    getList();
+});
+
+selectShowRows.addEventListener('change', function(e) {
+    casesTableBody.innerHTML = '';
+    page = 1;
+    items = e.target.value;
+
     getList();
 });
 

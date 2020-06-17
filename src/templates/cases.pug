@@ -7,6 +7,14 @@ block content
                 h2(class='section__title') Recorded Cases
         div(class='row')
             div(class='col')
+                div(class='panel panel--small mb-1')
+                    form(class='form form--right')
+                        label(for='showRows') Show rows
+                        select(id='showRows' class='select-show-rows')
+                            option(value='50' selected) 50
+                            option(value='100') 100
+                            option(value='200') 200
+                            option(value='500') 500
                 div(class='table__container panel mb-1')
                     table(class='table')
                         thead

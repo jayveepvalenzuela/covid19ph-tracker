@@ -1,0 +1,12 @@
+.form {
+    display: flex;
+    align-items: center;
+
+    &--right {
+        justify-content: flex-end;
+    }
+
+    label {
+        margin-right: .5rem;
+    }
+}
