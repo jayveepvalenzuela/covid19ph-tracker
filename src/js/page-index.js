@@ -38,37 +38,25 @@ caseAPI.getCasesTimeline().then(function(data) {
                     label: 'Confirmed',
                     data: confirmedData,
                     pointBackgroundColor: '#777777',
-                    borderColor: '#777777',
-                    backgroundColor: 'transparent',
-                    borderCapStyle: 'round',
-                    borderWidth: 1
+                    borderColor: '#777777'
                 },
                 {
                     label: 'Active',
                     data: activeData,
                     pointBackgroundColor: '#2196F3',
-                    borderColor: '#2196F3',
-                    backgroundColor: 'transparent',
-                    borderCapStyle: 'round',
-                    borderWidth: 1
+                    borderColor: '#2196F3'
                 },
                 {
                     label: 'Deaths',
                     data: deathData,
                     pointBackgroundColor: '#F44336',
-                    borderColor: '#F44336',
-                    backgroundColor: 'transparent',
-                    borderCapStyle: 'round',
-                    borderWidth: 1
+                    borderColor: '#F44336'
                 },
                 {
                     label: 'Recovered',
                     data: recoveredData,
                     pointBackgroundColor: '#4CAF50',
-                    borderColor: '#4CAF50',
-                    backgroundColor: 'transparent',
-                    borderCapStyle: 'round',
-                    borderWidth: 1
+                    borderColor: '#4CAF50'
                 }
             ]
         },
@@ -76,15 +64,30 @@ caseAPI.getCasesTimeline().then(function(data) {
             scales: {
                 xAxes: [{
                     ticks: {
-                        callback: function(tick, index, array) {
-                            return (index % 5) ? '' : tick;
-                        }
+                        callback: (tick, index, array) => (index % 5) ? '' : tick
                     }
                 }]
             },
             tooltips: {
                 mode: 'index',
                 position: 'nearest'
+            },
+            legend: {
+                labels: {
+                    usePointStyle : true
+                }
+            },
+            elements: {
+                line: {
+                    borderWidth: 2,
+                    borderCapStyle: 'round',
+                    fill: false
+                },
+                point: {
+                    radius: 0,
+                    hitRadius: 3,
+                    hoverRadius: 5
+                }
             }
         }
     });
