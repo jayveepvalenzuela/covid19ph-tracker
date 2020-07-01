@@ -8,11 +8,11 @@ const selectShowRows = document.querySelector('.select-show-rows');
 let page = 1;
 let items = 50;
 
-const getList = function() {
+const getCaseList = function() {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
 
-    caseAPI.getCaseList(page, items).then(function(data) {
+    caseAPI.getList(page, items).then(function(data) {
         const { data: list, total } = data.data;
 
         casesTableBody.insertAdjacentHTML('beforeend', generateTableRow(list));
@@ -45,7 +45,7 @@ const generateTableRow = function(data) {
 }
 
 btnLoadMore.addEventListener('click', function() {
-    getList();
+    getCaseList();
 });
 
 selectShowRows.addEventListener('change', function(e) {
@@ -53,7 +53,7 @@ selectShowRows.addEventListener('change', function(e) {
     page = 1;
     items = e.target.value;
 
-    getList();
+    getCaseList();
 });
 
-getList();
+getCaseList();

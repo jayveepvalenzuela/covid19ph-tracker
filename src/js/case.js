@@ -1,8 +1,13 @@
 export class Case {
-    async getTotalCases() {
+    async getStats() {
+        const apiHeaders = new Headers();
+
+        apiHeaders.append('Subscription-Key', 'aae4537d392b4b3b92098464b4ef766d');
+
         try {
-            const response = await fetch('https://coronavirus-ph-api.herokuapp.com/total', {
+            const response = await fetch('https://api.smartable.ai/coronavirus/stats/PH', {
                 method: 'GET',
+                headers: apiHeaders,
                 redirect: 'follow'
             });
 
@@ -12,23 +17,7 @@ export class Case {
         }
     }
 
-    async getCasesTimeline() {
-        const fromDate = '2020-01-30';
-        const presentDate = new Date().toISOString().slice(0, 10);
-
-        try {
-            const response = await fetch(`https://api.covid19api.com/country/philippines?from=${fromDate}&to=${presentDate}`, {
-                method: 'GET',
-                redirect: 'follow'
-            });
-
-            return await response.json();
-        } catch(error) {
-            console.error(error);
-        }
-    }
-
-    async getCaseList(page, items) {
+    async getList(page, items) {
         try {
             const response = await fetch(`https://coronavirus-ph-api.herokuapp.com/cases?page=${page}&itemsPerPage=${items}`, {
                 method: 'GET',
