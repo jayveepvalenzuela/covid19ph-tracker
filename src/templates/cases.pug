@@ -11,21 +11,21 @@ block content
                     form(class='form form--right')
                         label(for='showRows') Show rows
                         select(id='showRows' class='select-show-rows')
-                            option(value='50' selected) 50
-                            option(value='100') 100
-                            option(value='200') 200
+                            option(value='100' selected) 100
                             option(value='500') 500
+                            option(value='1000') 1000
+                            option(value='5000') 5000
+                            option(value='10000') 10000
                 div(class='table__container panel mb-1')
                     table(class='table')
                         thead
                             tr
-                                th(scope='col') Patient No.
+                                th(scope='col') Case Code
                                 th(scope='col') Status
                                 th(scope='col') Age
                                 th(scope='col') Sex
-                                th(scope='col') Location
-                                th(scope='col') Travel History
-                                th(scope='col') Admitted To
+                                th(scope='col') Province
+                                th(scope='col') Region
                                 th(scope='col') Date Reported
                         tbody(class='cases')
                 div(class='text-secondary text-center mb-2') - #[span(class='cases-total')] -

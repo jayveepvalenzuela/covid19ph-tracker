@@ -19,7 +19,7 @@ export class Case {
 
     async getList(page, items) {
         try {
-            const response = await fetch(`https://coronavirus-ph-api.herokuapp.com/cases?page=${page}&itemsPerPage=${items}`, {
+            const response = await fetch(`https://covid19-api-philippines.herokuapp.com/api/get?page=${page}&limit=${items}`, {
                 method: 'GET',
                 redirect: 'follow'
             });

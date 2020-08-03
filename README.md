@@ -9,5 +9,5 @@
 Run `gulp` for development and `gulp build` for production.
 
 ## Data Sources
-* [https://coronavirus-ph-api.herokuapp.com/](https://coronavirus-ph-api.herokuapp.com/)
 * [https://smartable.ai/](https://smartable.ai/)
+* [https://covid19-api-philippines.herokuapp.com/](https://covid19-api-philippines.herokuapp.com/)

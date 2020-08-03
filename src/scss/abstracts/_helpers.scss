@@ -32,4 +32,12 @@
     &-secondary {
         color: var(--color-secondary);
     }
+
+    &-uppercase {
+        text-transform: uppercase;
+    }
+
+    &-capitalize {
+        text-transform: capitalize;
+    }
 }
