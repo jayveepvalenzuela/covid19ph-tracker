@@ -35,7 +35,7 @@ const generateTableRow = function(data) {
                     <td>${e.age}</td>
                     <td class="text-capitalize">${e.sex}</td>
                     <td class="text-capitalize">${e.prov_res}</td>
-                    <td>${e.region_res}</td>
+                    <td class="text-uppercase">${e.region_res}</td>
                     <td>${e.date_rep_conf}</td>
                  </tr>`;
     });
