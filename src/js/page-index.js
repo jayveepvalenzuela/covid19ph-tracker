@@ -93,3 +93,22 @@ caseAPI.getStats().then(function(data) {
         }
     });
 });
+
+caseAPI.getCasesPerRegion().then(function(data) {
+    const casesPerRegionTableBody = document.querySelector('.cases-per-region');
+
+    casesPerRegionTableBody.insertAdjacentHTML('beforeend', generateRegionTableRow(data.data));
+});
+
+const generateRegionTableRow = function(data) {
+    let html = '';
+
+    data.forEach(e => {
+        html += `<tr>
+                    <td class="text-uppercase">${e.region}</td>
+                    <td>${e.cases.toLocaleString()}</td>
+                 </tr>`;
+    });
+
+    return html;
+}

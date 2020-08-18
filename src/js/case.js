@@ -29,4 +29,17 @@ export class Case {
             console.error(error);
         }
     }
+
+    async getCasesPerRegion() {
+        try {
+            const response = await fetch('https://covid19-api-philippines.herokuapp.com/api/top-regions', {
+                method: 'GET',
+                redirect: 'follow'
+            });
+
+            return await response.json();
+        } catch(error) {
+            console.error(error);
+        }
+    }
 }
