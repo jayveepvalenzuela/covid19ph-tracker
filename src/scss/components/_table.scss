@@ -21,5 +21,9 @@
 
     &__container {
         overflow-x: auto;
+
+        &--small {
+            height: 350px;
+        }
     }
 }
