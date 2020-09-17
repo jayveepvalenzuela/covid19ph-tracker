@@ -2,10 +2,11 @@ export class Case {
     async getStats() {
         const apiHeaders = new Headers();
 
-        apiHeaders.append('Subscription-Key', 'aae4537d392b4b3b92098464b4ef766d');
+        apiHeaders.append('x-rapidapi-host', 'coronavirus-smartable.p.rapidapi.com');
+        apiHeaders.append('x-rapidapi-key', 'ade6bbdc40msh4b986c729890fd1p1ef7f1jsn758dde8d72fc');
 
         try {
-            const response = await fetch('https://api.smartable.ai/coronavirus/stats/PH', {
+            const response = await fetch('https://coronavirus-smartable.p.rapidapi.com/stats/v1/PH/', {
                 method: 'GET',
                 headers: apiHeaders,
                 redirect: 'follow'
