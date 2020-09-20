@@ -1,5 +1,6 @@
 export class Case {
     async getStats() {
+        // HEADERS FOR DEMO PURPOSES ONLY
         const apiHeaders = new Headers();
 
         apiHeaders.append('x-rapidapi-host', 'coronavirus-smartable.p.rapidapi.com');
