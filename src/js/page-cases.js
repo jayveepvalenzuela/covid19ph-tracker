@@ -1,10 +1,10 @@
 import { Case } from './case.js';
 
 const caseAPI = new Case();
-const casesTableBody = document.querySelector('.cases');
-const casesTotal = document.querySelector('.cases-total');
-const btnLoadMore = document.querySelector('.btn-load-more');
-const selectShowRows = document.querySelector('.select-show-rows');
+const casesTableBody = getElement('.cases');
+const casesTotal = getElement('.cases-total');
+const btnLoadMore = getElement('.btn-load-more');
+const selectShowRows = getElement('.select-show-rows');
 let page = 1;
 let items = selectShowRows.value;
 
@@ -15,7 +15,7 @@ const getCaseList = function() {
     caseAPI.getList(page, items).then(function(data) {
         const { data: list, pagination } = data;
 
-        casesTableBody.insertAdjacentHTML('beforeend', generateTableRow(list));
+        casesTableBody.insertAdjacentHTML('beforeend', generateRows(list));
         casesTotal.innerText = `Page ${page} of ${pagination.max_page}`;
 
         btnLoadMore.innerText = 'Load more';
@@ -23,13 +23,13 @@ const getCaseList = function() {
 
         page++;
     });
-}
+};
 
-const generateTableRow = function(data) {
-    let html = '';
+const generateRows = function(data) {
+    let rows = '';
 
     data.forEach(e => {
-        html += `<tr>
+        rows += `<tr>
                     <td>${e.case_code}</td>
                     <td><span class="badge badge--${e.health_status.toLowerCase()} text-uppercase">${e.health_status}</span></td>
                     <td>${e.age}</td>
@@ -40,17 +40,17 @@ const generateTableRow = function(data) {
                  </tr>`;
     });
 
-    return html;
-}
+    return rows;
+};
 
 btnLoadMore.addEventListener('click', function() {
     getCaseList();
 });
 
-selectShowRows.addEventListener('change', function(e) {
+selectShowRows.addEventListener('change', function(ev) {
     casesTableBody.innerHTML = '';
     page = 1;
-    items = e.target.value;
+    items = ev.target.value;
 
     getCaseList();
 });

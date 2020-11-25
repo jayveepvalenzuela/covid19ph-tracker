@@ -14,13 +14,13 @@ caseAPI.getStats().then(function(data) {
         history
     } = data.stats;
 
-    document.querySelector('.confirmed-cases').innerText = totalConfirmedCases.toLocaleString();
-    document.querySelector('.confirmed-today').innerText = newlyConfirmedCases.toLocaleString();
-    document.querySelector('.deaths').innerText = totalDeaths.toLocaleString();
-    document.querySelector('.deaths-today').innerText = newDeaths.toLocaleString();
-    document.querySelector('.recovered').innerText = totalRecoveredCases.toLocaleString();
-    document.querySelector('.recovered-today').innerText = newlyRecoveredCases.toLocaleString();
-    document.querySelector('.last-update').innerText = new Date(data.updatedDateTime).toLocaleDateString('en-US', {
+    getElement('.confirmed-cases').innerText = totalConfirmedCases.toLocaleString();
+    getElement('.confirmed-today').innerText = newlyConfirmedCases.toLocaleString();
+    getElement('.deaths').innerText = totalDeaths.toLocaleString();
+    getElement('.deaths-today').innerText = newDeaths.toLocaleString();
+    getElement('.recovered').innerText = totalRecoveredCases.toLocaleString();
+    getElement('.recovered-today').innerText = newlyRecoveredCases.toLocaleString();
+    getElement('.last-update').innerText = new Date(data.updatedDateTime).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
@@ -36,7 +36,7 @@ caseAPI.getStats().then(function(data) {
         day: 'numeric'
     }));
 
-    const progressionChart = new Chart(document.querySelector('#progressionChart').getContext('2d'), {
+    const progressionChart = new Chart(getElement('#progressionChart').getContext('2d'), {
         type: 'line',
         data: {
             labels: dateData,
@@ -95,20 +95,18 @@ caseAPI.getStats().then(function(data) {
 });
 
 caseAPI.getCasesPerRegion().then(function(data) {
-    const casesPerRegionTableBody = document.querySelector('.cases-per-region');
-
-    casesPerRegionTableBody.insertAdjacentHTML('beforeend', generateRegionTableRow(data.data));
+    getElement('.cases-per-region').insertAdjacentHTML('beforeend', generateRows(data.data));
 });
 
-const generateRegionTableRow = function(data) {
-    let html = '';
+const generateRows = function(data) {
+    let rows = '';
 
     data.forEach(e => {
-        html += `<tr>
+        rows += `<tr>
                     <td class="text-uppercase">${e.region}</td>
                     <td>${e.cases.toLocaleString()}</td>
                  </tr>`;
     });
 
-    return html;
-}
+    return rows;
+};
