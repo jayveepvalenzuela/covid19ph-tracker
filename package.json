@@ -27,6 +27,7 @@
     "sass": "^1.26.3"
   },
   "dependencies": {
-    "fibers": "^4.0.2"
+    "fibers": "^4.0.2",
+    "pug": "^3.0.2"
   }
 }
