@@ -8,9 +8,7 @@ export class Case {
 
         try {
             const response = await fetch('https://coronavirus-smartable.p.rapidapi.com/stats/v1/PH/', {
-                method: 'GET',
-                headers: apiHeaders,
-                redirect: 'follow'
+                headers: apiHeaders
             });
 
             return await response.json();
@@ -21,10 +19,7 @@ export class Case {
 
     async getList(page, items) {
         try {
-            const response = await fetch(`https://covid19-api-philippines.herokuapp.com/api/get?page=${page}&limit=${items}`, {
-                method: 'GET',
-                redirect: 'follow'
-            });
+            const response = await fetch(`https://covid19-api-philippines.herokuapp.com/api/get?page=${page}&limit=${items}`);
 
             return await response.json();
         } catch(error) {
@@ -34,10 +29,7 @@ export class Case {
 
     async getCasesPerRegion() {
         try {
-            const response = await fetch('https://covid19-api-philippines.herokuapp.com/api/top-regions', {
-                method: 'GET',
-                redirect: 'follow'
-            });
+            const response = await fetch('https://covid19-api-philippines.herokuapp.com/api/top-regions');
 
             return await response.json();
         } catch(error) {

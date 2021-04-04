@@ -1,3 +1,4 @@
+import { getElement } from './app.js';
 import { Case } from './case.js';
 
 const caseAPI = new Case();
@@ -8,11 +9,11 @@ const selectShowRows = getElement('.select-show-rows');
 let page = 1;
 let items = selectShowRows.value;
 
-const getCaseList = function() {
+const getCaseList = () => {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
 
-    caseAPI.getList(page, items).then(function(data) {
+    caseAPI.getList(page, items).then(data => {
         const { data: list, pagination } = data;
 
         casesTableBody.insertAdjacentHTML('beforeend', generateRows(list));
@@ -25,7 +26,7 @@ const getCaseList = function() {
     });
 };
 
-const generateRows = function(data) {
+const generateRows = data => {
     let rows = '';
 
     data.forEach(e => {
@@ -43,11 +44,9 @@ const generateRows = function(data) {
     return rows;
 };
 
-btnLoadMore.addEventListener('click', function() {
-    getCaseList();
-});
+btnLoadMore.addEventListener('click', getCaseList);
 
-selectShowRows.addEventListener('change', function(ev) {
+selectShowRows.addEventListener('change', (ev) => {
     casesTableBody.innerHTML = '';
     page = 1;
     items = ev.target.value;

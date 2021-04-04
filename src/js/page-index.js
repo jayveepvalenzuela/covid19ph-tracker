@@ -1,8 +1,9 @@
+import { getElement } from './app.js';
 import { Case } from './case.js';
 
 const caseAPI = new Case();
 
-caseAPI.getStats().then(function(data) {
+caseAPI.getStats().then(data => {
     // total stats
     const {
         totalConfirmedCases,
@@ -94,11 +95,11 @@ caseAPI.getStats().then(function(data) {
     });
 });
 
-caseAPI.getCasesPerRegion().then(function(data) {
+caseAPI.getCasesPerRegion().then(data => {
     getElement('.cases-per-region').insertAdjacentHTML('beforeend', generateRows(data.data));
 });
 
-const generateRows = function(data) {
+const generateRows = data => {
     let rows = '';
 
     data.forEach(e => {
