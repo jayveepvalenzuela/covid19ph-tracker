@@ -1,4 +1,4 @@
-import { getElement } from './app.js';
+import { getElement, formatNumber, formatDate } from './app.js';
 import { Case } from './case.js';
 
 const caseAPI = new Case();
@@ -15,27 +15,19 @@ caseAPI.getStats().then(data => {
         history
     } = data.stats;
 
-    getElement('.confirmed-cases').innerText = totalConfirmedCases.toLocaleString();
-    getElement('.confirmed-today').innerText = newlyConfirmedCases.toLocaleString();
-    getElement('.deaths').innerText = totalDeaths.toLocaleString();
-    getElement('.deaths-today').innerText = newDeaths.toLocaleString();
-    getElement('.recovered').innerText = totalRecoveredCases.toLocaleString();
-    getElement('.recovered-today').innerText = newlyRecoveredCases.toLocaleString();
-    getElement('.last-update').innerText = new Date(data.updatedDateTime).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+    getElement('.confirmed-cases').innerText = formatNumber(totalConfirmedCases);
+    getElement('.confirmed-today').innerText = formatNumber(newlyConfirmedCases);
+    getElement('.deaths').innerText = formatNumber(totalDeaths);
+    getElement('.deaths-today').innerText = formatNumber(newDeaths);
+    getElement('.recovered').innerText = formatNumber(totalRecoveredCases);
+    getElement('.recovered-today').innerText = formatNumber(newlyRecoveredCases);
+    getElement('.last-update').innerText = formatDate(data.updatedDateTime);
 
     // case progression
     const confirmedData = history.map(e => e.confirmed);
     const deathData = history.map(e => e.deaths);
     const recoveredData = history.map(e => e.recovered);
-    const dateData = history.map(e => new Date(e.date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    }));
+    const dateData = history.map(e => formatDate(e.date));
 
     const progressionChart = new Chart(getElement('#progressionChart').getContext('2d'), {
         type: 'line',
@@ -105,7 +97,7 @@ const generateRows = data => {
     data.forEach(e => {
         rows += `<tr>
                     <td class="text-uppercase">${e.region}</td>
-                    <td>${e.cases.toLocaleString()}</td>
+                    <td>${formatNumber(e.cases)}</td>
                  </tr>`;
     });
 
