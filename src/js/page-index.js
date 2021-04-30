@@ -3,6 +3,19 @@ import { Case } from './case.js';
 
 const caseAPI = new Case();
 
+const generateRows = data => {
+    const template = getElement('#row-template');
+
+    data.forEach(e => {
+        const tr = document.importNode(template.content, true);
+
+        tr.querySelector('.region').textContent = e.region;
+        tr.querySelector('.region-total').textContent = e.cases;
+
+        getElement('.cases-per-region').appendChild(tr);
+    });
+};
+
 caseAPI.getStats().then(data => {
     // total stats
     const {
@@ -88,18 +101,5 @@ caseAPI.getStats().then(data => {
 });
 
 caseAPI.getCasesPerRegion().then(data => {
-    getElement('.cases-per-region').insertAdjacentHTML('beforeend', generateRows(data.data));
+    generateRows(data.data);
 });
-
-const generateRows = data => {
-    let rows = '';
-
-    data.forEach(e => {
-        rows += `<tr>
-                    <td class="text-uppercase">${e.region}</td>
-                    <td>${formatNumber(e.cases)}</td>
-                 </tr>`;
-    });
-
-    return rows;
-};
