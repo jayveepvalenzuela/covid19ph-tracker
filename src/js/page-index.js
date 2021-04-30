@@ -5,14 +5,14 @@ const caseAPI = new Case();
 
 const generateRows = data => {
     const template = getElement('#row-template');
+    const tbody = getElement('.cases-per-region');
 
     data.forEach(e => {
         const tr = document.importNode(template.content, true);
 
         tr.querySelector('.region').textContent = e.region;
         tr.querySelector('.region-total').textContent = e.cases;
-
-        getElement('.cases-per-region').appendChild(tr);
+        tbody.appendChild(tr);
     });
 };
 

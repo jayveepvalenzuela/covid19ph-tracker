@@ -9,6 +9,24 @@ const selectShowRows = getElement('.select-show-rows');
 let page = 1;
 let items = selectShowRows.value;
 
+const generateRows = data => {
+    const template = getElement('#row-template');
+
+    data.forEach(e => {
+        const tr = document.importNode(template.content, true);
+
+        tr.querySelector('.case-code').textContent = e.case_code;
+        tr.querySelector('.badge').textContent = e.health_status;
+        tr.querySelector('.badge').classList.add(`badge--${e.health_status}`);
+        tr.querySelector('.age').textContent = e.age;
+        tr.querySelector('.sex').textContent = e.sex;
+        tr.querySelector('.prov').textContent = e.prov_res;
+        tr.querySelector('.region').textContent = e.region_res;
+        tr.querySelector('.date').textContent = e.date_rep_conf;
+        casesTableBody.appendChild(tr);
+    });
+};
+
 const getCaseList = () => {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
@@ -16,7 +34,7 @@ const getCaseList = () => {
     caseAPI.getList(page, items).then(data => {
         const { data: list, pagination } = data;
 
-        casesTableBody.insertAdjacentHTML('beforeend', generateRows(list));
+        generateRows(list);
         casesTotal.innerText = `Page ${page} of ${pagination.max_page}`;
 
         btnLoadMore.innerText = 'Load more';
@@ -24,24 +42,6 @@ const getCaseList = () => {
 
         page++;
     });
-};
-
-const generateRows = data => {
-    let rows = '';
-
-    data.forEach(e => {
-        rows += `<tr>
-                    <td>${e.case_code}</td>
-                    <td><span class="badge badge--${e.health_status.toLowerCase()} text-uppercase">${e.health_status}</span></td>
-                    <td>${e.age}</td>
-                    <td class="text-capitalize">${e.sex}</td>
-                    <td class="text-capitalize">${e.prov_res}</td>
-                    <td class="text-uppercase">${e.region_res}</td>
-                    <td>${e.date_rep_conf}</td>
-                 </tr>`;
-    });
-
-    return rows;
 };
 
 btnLoadMore.addEventListener('click', getCaseList);
