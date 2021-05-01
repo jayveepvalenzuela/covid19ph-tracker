@@ -11,7 +11,7 @@ const generateRows = data => {
         const tr = document.importNode(template.content, true);
 
         tr.querySelector('.region').textContent = e.region;
-        tr.querySelector('.region-total').textContent = e.cases;
+        tr.querySelector('.region-total').textContent = formatNumber(e.cases);
         tbody.appendChild(tr);
     });
 };
