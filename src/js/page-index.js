@@ -16,16 +16,15 @@ const generateRows = data => {
     });
 };
 
-const setPanelCount = stats => {
+const setPanelCount = data => {
     const {
         totalConfirmedCases,
         newlyConfirmedCases,
         totalDeaths,
         newDeaths,
         totalRecoveredCases,
-        newlyRecoveredCases,
-        updatedDateTime
-    } = stats;
+        newlyRecoveredCases
+    } = data.stats;
 
     getElement('.confirmed-cases').innerText = formatNumber(totalConfirmedCases);
     getElement('.confirmed-today').innerText = formatNumber(newlyConfirmedCases);
@@ -33,7 +32,7 @@ const setPanelCount = stats => {
     getElement('.deaths-today').innerText = formatNumber(newDeaths);
     getElement('.recovered').innerText = formatNumber(totalRecoveredCases);
     getElement('.recovered-today').innerText = formatNumber(newlyRecoveredCases);
-    getElement('.last-update').innerText = formatDate(updatedDateTime);
+    getElement('.last-update').innerText = formatDate(data.updatedDateTime);
 }
 
 const generateChart = history => {
@@ -101,7 +100,7 @@ const generateChart = history => {
 }
 
 caseAPI.getStats().then(data => {
-    setPanelCount(data.stats);
+    setPanelCount(data);
     generateChart(data.stats.history);
 });
 
