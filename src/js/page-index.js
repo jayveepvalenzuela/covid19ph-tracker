@@ -16,8 +16,7 @@ const generateRows = data => {
     });
 };
 
-caseAPI.getStats().then(data => {
-    // total stats
+const setPanelCount = stats => {
     const {
         totalConfirmedCases,
         newlyConfirmedCases,
@@ -25,8 +24,8 @@ caseAPI.getStats().then(data => {
         newDeaths,
         totalRecoveredCases,
         newlyRecoveredCases,
-        history
-    } = data.stats;
+        updatedDateTime
+    } = stats;
 
     getElement('.confirmed-cases').innerText = formatNumber(totalConfirmedCases);
     getElement('.confirmed-today').innerText = formatNumber(newlyConfirmedCases);
@@ -34,9 +33,10 @@ caseAPI.getStats().then(data => {
     getElement('.deaths-today').innerText = formatNumber(newDeaths);
     getElement('.recovered').innerText = formatNumber(totalRecoveredCases);
     getElement('.recovered-today').innerText = formatNumber(newlyRecoveredCases);
-    getElement('.last-update').innerText = formatDate(data.updatedDateTime);
+    getElement('.last-update').innerText = formatDate(updatedDateTime);
+}
 
-    // case progression
+const generateChart = history => {
     const confirmedData = history.map(e => e.confirmed);
     const deathData = history.map(e => e.deaths);
     const recoveredData = history.map(e => e.recovered);
@@ -81,7 +81,7 @@ caseAPI.getStats().then(data => {
             },
             legend: {
                 labels: {
-                    usePointStyle : true
+                    usePointStyle: true
                 }
             },
             elements: {
@@ -98,6 +98,11 @@ caseAPI.getStats().then(data => {
             }
         }
     });
+}
+
+caseAPI.getStats().then(data => {
+    setPanelCount(data.stats);
+    generateChart(data.stats.history);
 });
 
 caseAPI.getCasesPerRegion().then(data => {
