@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jayveepvalenzuela/covid19-philippines#readme",
   "devDependencies": {
-    "browser-sync": "^2.29.0",
+    "browser-sync": "^3.0.2",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-pug": "^1.3.1",
