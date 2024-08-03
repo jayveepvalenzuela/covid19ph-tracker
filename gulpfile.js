@@ -4,6 +4,7 @@ const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify-es').default;
+const { rimraf } = require('rimraf');
 
 const PATH = {
     src: 'src',
@@ -51,11 +52,17 @@ function compressJs() {
 }
 
 function copyImg() {
-    return src(`${PATH.src}/img/*.{png,jpg,gif,webp}`)
-        .pipe(dest(`${PATH.build}/img`));
+    return src(`${PATH.src}/img/**`, {
+        encoding: false
+    }).pipe(dest(`${PATH.build}/img`));
+}
+
+function cleanBuild() {
+    return rimraf(PATH.build);
 }
 
 exports.default = series(
+    cleanBuild,
     compilePug,
     compileSass,
     compressJs,
@@ -64,6 +71,7 @@ exports.default = series(
 );
 
 exports.build = series(
+    cleanBuild,
     compilePug,
     compileSass,
     compressJs,
