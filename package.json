@@ -17,17 +17,15 @@
   },
   "homepage": "https://github.com/jayveepvalenzuela/covid19-philippines#readme",
   "devDependencies": {
-    "browser-sync": "^3.0.2",
-    "del": "^5.1.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-pug": "^5.0.0",
+    "browser-sync": "^3.0.2",
     "gulp-sass": "^5.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-uglify-es": "^2.0.0",
-    "sass": "^1.26.3"
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify-es": "^3.0.0",
+    "sass": "^1.77.8"
   },
   "dependencies": {
-    "fibers": "^4.0.2",
     "pug": "^3.0.3"
   }
 }

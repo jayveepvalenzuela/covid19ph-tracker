@@ -1,70 +1,61 @@
 const { src, dest, watch, series } = require('gulp');
 const pug = require('gulp-pug');
-const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const Fiber = require('fibers');
 const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass')(require('sass'));
+const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify-es').default;
-const del = require('del');
-const path = {
+
+const PATH = {
     src: 'src',
     build: 'dist'
 };
 
-sass.compiler = require('sass');
-
 function compilePug() {
-    return src(`${path.src}/templates/*.pug`)
+    return src(`${PATH.src}/templates/*.pug`)
         .pipe(pug())
-        .pipe(dest(`${path.build}`));
+        .pipe(dest(`${PATH.build}`));
 }
 
 function compileSass() {
-    return src(`${path.src}/scss/app.scss`)
+    return src(`${PATH.src}/scss/app.scss`)
         .pipe(sourcemaps.init())
         .pipe(sass({
-            outputStyle: 'compressed',
-            fiber: Fiber
+            outputStyle: 'compressed'
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(dest(`${path.build}/css`))
+        .pipe(dest(`${PATH.build}/css`))
         .pipe(browserSync.stream());
 }
 
 function watchFiles() {
     browserSync.init({
         server: {
-            baseDir: path.build
+            baseDir: PATH.build
         }
     });
 
-    watch(`${path.src}/**/*.pug`, compilePug);
-    watch(`${path.src}/**/*.scss`, compileSass);
-    watch(`${path.src}/**/*.js`, compressJs);
-    watch(`${path.src}/**/*.{png,jpg,gif,webp}`, copyImg);
-    watch(`${path.build}/**/*.html`).on('change', browserSync.reload);
+    watch(`${PATH.src}/**/*.pug`, compilePug);
+    watch(`${PATH.src}/**/*.scss`, compileSass);
+    watch(`${PATH.src}/**/*.js`, compressJs);
+    watch(`${PATH.src}/**/*.{png,jpg,gif,webp}`, copyImg);
+    watch(`${PATH.build}/**/*.html`).on('change', browserSync.reload);
 }
 
 function compressJs() {
-    return src(`${path.src}/js/*.js`)
+    return src(`${PATH.src}/js/*.js`)
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(dest(`${path.build}/js`))
+        .pipe(dest(`${PATH.build}/js`))
         .pipe(browserSync.stream());
 }
 
 function copyImg() {
-    return src(`${path.src}/img/*.{png,jpg,gif,webp}`)
-        .pipe(dest(`${path.build}/img`));
-}
-
-function cleanBuild() {
-    return del(path.build);
+    return src(`${PATH.src}/img/*.{png,jpg,gif,webp}`)
+        .pipe(dest(`${PATH.build}/img`));
 }
 
 exports.default = series(
-    cleanBuild,
     compilePug,
     compileSass,
     compressJs,
@@ -73,7 +64,6 @@ exports.default = series(
 );
 
 exports.build = series(
-    cleanBuild,
     compilePug,
     compileSass,
     compressJs,
