@@ -109,7 +109,7 @@ caseAPI.getCasesPerRegion().then(response => {
         generateRows(response.data);
     } else {
         getElement('.cases-per-region').innerHTML = `
-            <tr><td>Unable to retrieve data</td></tr>
+            <tr><td><i class="las la-exclamation-circle"></i> Unable to retrieve data</td></tr>
         `;
     }
 }).catch(err => console.log(err));

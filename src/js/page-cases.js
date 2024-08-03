@@ -45,7 +45,7 @@ const getCaseList = () => {
             page++;
         } else {
             getElement('.cases').innerHTML = `
-                <tr><td colspan="7">Unable to retrieve data</td></tr>
+                <tr><td colspan="7"><i class="las la-exclamation-circle"></i> Unable to retrieve data</td></tr>
             `;
             btnLoadMore.style.display = 'none';
         }
