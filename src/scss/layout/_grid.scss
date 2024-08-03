@@ -1,4 +1,5 @@
 @use 'abstracts/mixins' as *;
+@use "sass:math";
 
 .container {
     width: 100%;
@@ -36,7 +37,7 @@
 
     @include for-size(tablet-up) {
         &.md-4 {
-            width: percentage(4/12);
+            width: math.percentage(math.div(4,12));
         }
     }
 }
