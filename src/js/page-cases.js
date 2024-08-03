@@ -31,22 +31,30 @@ const getCaseList = () => {
     btnLoadMore.innerText = 'Loading..';
     btnLoadMore.setAttribute('disabled', true);
 
-    caseAPI.getList(page, items).then(data => {
-        const { data: list, pagination } = data;
+    caseAPI.getList(page, items).then(response => {
+        if (response) {
+            const { data: list, pagination } = response;
 
-        generateRows(list);
-        casesTotal.innerText = `Page ${page} of ${pagination.max_page}`;
+            generateRows(list);
+            casesTotal.innerText = `Page ${page} of ${pagination.max_page}`;
 
-        btnLoadMore.innerText = 'Load more';
-        btnLoadMore.removeAttribute('disabled');
+            btnLoadMore.innerText = 'Load more';
+            btnLoadMore.removeAttribute('disabled');
+            btnLoadMore.style.display = 'block';
 
-        page++;
-    });
+            page++;
+        } else {
+            getElement('.cases').innerHTML = `
+                <tr><td colspan="7">Unable to retrieve data</td></tr>
+            `;
+            btnLoadMore.style.display = 'none';
+        }
+    }).catch(err => console.log(err));
 };
 
 btnLoadMore.addEventListener('click', getCaseList);
 
-selectShowRows.addEventListener('change', (ev) => {
+selectShowRows.addEventListener('change', ev => {console.log(ev)
     casesTableBody.innerHTML = '';
     page = 1;
     items = ev.target.value;

@@ -7,6 +7,9 @@ const formatDate = date => new Date(date).toLocaleDateString('en-US', {
 });
 
 const navLink = getElement(`[data-pathname="${window.location.pathname}"]`);
-navLink.classList.add('active');
+
+if (navLink) {
+    navLink.classList.add('active');
+}
 
 export { getElement, formatNumber, formatDate };

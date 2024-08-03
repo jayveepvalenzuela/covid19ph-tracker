@@ -99,11 +99,17 @@ const generateChart = history => {
     });
 }
 
-caseAPI.getStats().then(data => {
-    setPanelCount(data);
-    generateChart(data.stats.history);
-});
+caseAPI.getStats().then(response => {
+    setPanelCount(response);
+    generateChart(response.stats.history);
+}).catch(err => console.log(err));
 
-caseAPI.getCasesPerRegion().then(data => {
-    generateRows(data.data);
-});
+caseAPI.getCasesPerRegion().then(response => {
+    if (response) {
+        generateRows(response.data);
+    } else {
+        getElement('.cases-per-region').innerHTML = `
+            <tr><td>Unable to retrieve data</td></tr>
+        `;
+    }
+}).catch(err => console.log(err));
